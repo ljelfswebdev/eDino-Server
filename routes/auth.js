@@ -4,15 +4,15 @@ const router = express.Router();
 //middlewares
 import { requireSignin, isAdmin} from "../middlewares";
 //controllers
-import {register, 
-    // login, currentUser, forgotPassword, profileUpdate, findPeople, addFollower, userFollow, removeFollower, userUnfollow, userFollowing, searchUser, getUser
+import {register, login, currentUser, forgotPassword,
+    //  profileUpdate, findPeople, addFollower, userFollow, removeFollower, userUnfollow, userFollowing, searchUser, getUser
 } from "../controllers/auth";
 
 
 router.post('/register', register);
-// router.post('/login', login);
-// router.get('/current-user', requireSignin, currentUser);
-// router.post('/forgot-password', forgotPassword);
+router.post('/login', login);
+router.get('/current-user', requireSignin, currentUser);
+router.post('/forgot-password', forgotPassword);
 
 // router.put('/profile-update', requireSignin, profileUpdate);
 

@@ -29,66 +29,66 @@ export const register = async (req,res) => {
     }
 };
 
-// export const login = async (req, res) => {
-//     console.log(res.body)
-//     try{
-//         const  {email, password} = req.body;
-//         const user = await User.findOne({ email });
-//         if(!user)  {return res.json({error:'No User found'});}
-//         const match = await comparePassword(password, user.password);
-//         if(!match)  {return res.json({error:'Wrong password'});}
-//         const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn:'7d'});
-//         user.password = undefined;
-//         user.secret = undefined;
-//         res.json({
-//             token, user,
-//         })
-//     } catch (err) {
-//         console.log(err)
-//         return res.status(400).send('Error. Try again.');
-//     }
-// };
+export const login = async (req, res) => {
+    console.log(res.body)
+    try{
+        const  {email, password} = req.body;
+        const user = await User.findOne({ email });
+        if(!user)  {return res.json({error:'No User found'});}
+        const match = await comparePassword(password, user.password);
+        if(!match)  {return res.json({error:'Wrong password'});}
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn:'7d'});
+        user.password = undefined;
+        user.secret = undefined;
+        res.json({
+            token, user,
+        })
+    } catch (err) {
+        console.log(err)
+        return res.status(400).send('Error. Try again.');
+    }
+};
 
-// export const currentUser = async (req, res) => {
-//     try{
-//         const user = await User.findById(req.user._id);
-//         res.json({ok:true});
-//     } catch (err) {
-//         console.log(err);
-//         res.sendStatus(400);
-//     }
-// };
+export const currentUser = async (req, res) => {
+    try{
+        const user = await User.findById(req.user._id);
+        res.json({ok:true});
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(400);
+    }
+};
 
-// export const forgotPassword = async (req, res) => {
-//     const {email, newPassword, secret} = req.body;
-//     if(!newPassword || newPassword < 6){
-//         return res.json({
-//             error: 'New Password is required and should be a minimum of 6 characters long',
-//         });
-//     }
-//     if(!secret){
-//         return res.json({
-//             error: 'Secret is required',
-//         });
-//     }
-//     const user = await User.findOne({email, secret});
-//     if(!user) {
-//         return res.json({
-//             error: "We can't verify you with those details",
-//         });
-//     }
-//     try {
-//         const hashed = await hashPassword(newPassword);
-//         await User.findByIdAndUpdate(user._id, {password: hashed});
-//         return res.json ({
-//             success: 'Congratulations, Password successfully updated'
-//         })
-//     } catch (err) {
-//         return res.json({
-//             error: "Something went wrong. Try again"
-//         });
-//     }
-// };
+export const forgotPassword = async (req, res) => {
+    const {email, newPassword, secret} = req.body;
+    if(!newPassword || newPassword < 6){
+        return res.json({
+            error: 'New Password is required and should be a minimum of 6 characters long',
+        });
+    }
+    if(!secret){
+        return res.json({
+            error: 'Secret is required',
+        });
+    }
+    const user = await User.findOne({email, secret});
+    if(!user) {
+        return res.json({
+            error: "We can't verify you with those details",
+        });
+    }
+    try {
+        const hashed = await hashPassword(newPassword);
+        await User.findByIdAndUpdate(user._id, {password: hashed});
+        return res.json ({
+            success: 'Congratulations, Password successfully updated'
+        })
+    } catch (err) {
+        return res.json({
+            error: "Something went wrong. Try again"
+        });
+    }
+};
 
 // export const profileUpdate = async (req, res) => {
 //     try{

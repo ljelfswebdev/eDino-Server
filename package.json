@@ -1,4 +1,11 @@
 {
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -r esm server.js"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.29.0",

@@ -4,15 +4,15 @@ const router = express.Router();
 //middlewares
 import { requireSignin, isAdmin} from "../middlewares";
 //controllers
-import {register, login, currentUser, forgotPassword,
-    //  profileUpdate, findPeople, addFollower, userFollow, removeFollower, userUnfollow, userFollowing, searchUser, getUser
+import {register, login, currentUser, 
+    // forgotPassword, profileUpdate, findPeople, addFollower, userFollow, removeFollower, userUnfollow, userFollowing, searchUser, getUser
 } from "../controllers/auth";
 
 
 router.post('/register', register);
 router.post('/login', login);
 router.get('/current-user', requireSignin, currentUser);
-router.post('/forgot-password', forgotPassword);
+// router.post('/forgot-password', forgotPassword);
 
 // router.put('/profile-update', requireSignin, profileUpdate);
 
@@ -27,6 +27,6 @@ router.post('/forgot-password', forgotPassword);
 
 // router.get('/user/:username', getUser);
 
-// router.get("/current-admin", requireSignin, isAdmin, currentUser);
+router.get("/current-admin", requireSignin, isAdmin, currentUser);
 
 module.exports = router;

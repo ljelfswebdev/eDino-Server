@@ -6,7 +6,7 @@ const router = express.Router();
 // middleware
 import { requireSignin, isAdmin  } from "../middlewares";
 // controllers
-import { createProduct, uploadImage, products
+import { createProduct, uploadImage, fetchProducts, getProduct
     // , postsByUser, userPost, updatePost, newsFeed, deletePost, likePost, unlikePost, addComment, removeComment, totalPosts
 } from "../controllers/product";
 
@@ -31,9 +31,9 @@ router.post("/upload-image", requireSignin, formidable({maxFileSize: 5 * 1024 * 
 
 // router.get('/total-posts', totalPosts);
 
-router.get('/fetch-products', products);
+router.get('/fetch-products', fetchProducts);
 
-// // router.get('/post/:_id', getPost);
+router.get('/product/:_id', getProduct);
 
 // // admin
 // router.delete("/admin/delete-post/:_id", requireSignin, isAdmin, deletePost);

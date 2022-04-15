@@ -55,16 +55,16 @@ export const uploadImage = async (req, res) => {
 //   }
 // };
 
-// export const userPost = async (req, res) => {
-//   try{
-//     const post = await Post.findById(req.params._id)
-//     .populate('postedBy', '_id name image' )
-//     .populate('comments.postedBy', '_id name image');
-//     res.json(post);
-//   } catch (err) {
-//     console.log(err)
-//   }
-// };
+export const getProduct = async (req, res) => {
+  try{
+    const product = await Product.findById(req.params._id)
+    .populate('postedBy', '_id name description price image' )
+
+    res.json(product);
+  } catch (err) {
+    console.log(err)
+  }
+};
 
 // export const updatePost = async (req,res) => {
 //   // console.log('post update', req.body)
@@ -173,7 +173,7 @@ export const uploadImage = async (req, res) => {
 //   }
 // };
 
-export const products = async (req, res) => {
+export const fetchProducts = async (req, res) => {
   try {
     const products = await Product.find()
       .populate("postedBy", "_id name image price description")

@@ -66,29 +66,28 @@ export const getProduct = async (req, res) => {
   }
 };
 
-// export const updatePost = async (req,res) => {
-//   // console.log('post update', req.body)
-//   try{
-//     const post = await Post.findByIdAndUpdate(req.params._id, req.body, {
-//       new: true
-//     });
-//     res.json(post);
-//   } catch (err) {
-//     console.log(err)
-//   }
-// };
+export const updateProduct = async (req,res) => {
+  try{
+    const product = await Product.findByIdAndUpdate(req.params._id, req.body, {
+      new: true
+    });
+    res.json(product);
+  } catch (err) {
+    console.log(err)
+  }
+};
 
-// export const deletePost = async (req, res) => {
-//   try{
-//     const post = await Post.findByIdAndDelete(req.params._id);
-//     if(post.image && post.image.public_id) {
-//       const image = await cloudinary.uploader.destroy(post.image.public_id);
-//     }
-//     res.json({ok:true});
-//   } catch (err) {
-//     console.log(err)
-//   }
-// };
+export const deleteProduct = async (req, res) => {
+  try{
+    const product = await Product.findByIdAndDelete(req.params._id);
+    if(product.image && product.image.public_id) {
+      const image = await cloudinary.uploader.destroy(product.image.public_id);
+    }
+    res.json({ok:true});
+  } catch (err) {
+    console.log(err)
+  }
+};
 
 // export const newsFeed = async (req, res) => {
 //   try{

@@ -85,7 +85,7 @@ export const deleteProduct = async (req, res) => {
     }
     res.json({ok:true});
   } catch (err) {
-    console.log(err)
+    console.log(err) 
   }
 };
 

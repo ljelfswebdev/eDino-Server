@@ -23,7 +23,10 @@ const userSchema = new Schema({
         type: String,
         default: "Subscriber",
     },
-    cart:[{type: Schema.ObjectId, ref: "User"}],
+    cart:{
+        type: Array,
+        default: []
+    }
 }, {timestamps: true}
 );
 

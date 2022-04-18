@@ -10,13 +10,13 @@ cloudinary.config({
 
 
 export const createProduct = async (req, res) => {
-    //   console.log("post => ", req.body);
+    //   console.log("post => ", req.body); 
     const { name, description, price, image } = req.body;
     if (!name.length) {return res.json({error: "Name is required",});}
     if (!description.length) {return res.json({error: "Description is required",});}
     if (!price.length) {return res.json({error: "Price is required",});}
     try {
-      const product = new Product({name, description, price, image});
+      const product = new Product({name, description, price, image, postedBy: req.user._id});
       await product.save();
       const productWithUser = await Product.findById(product._id).populate('postedBy','-password -secret');
   

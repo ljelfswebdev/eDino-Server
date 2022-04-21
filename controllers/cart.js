@@ -27,3 +27,12 @@ export const fetchCart = async (req,res) => {
     console.log(err);
   }
 }
+
+export const removeProduct = async (req, res) => {
+  try{
+    const cart = await Cart.findByIdAndDelete(req.params._id);
+    res.json({ ok: true });
+  } catch (err) {
+    console.log(err) 
+  }
+};

@@ -1,6 +1,7 @@
 import Product from "../models/product"
 import User from "../models/user";
 import expressJwt from "express-jwt";
+import Cart from "../models/cart";
 
 export const requireSignin = expressJwt({
     secret: process.env.JWT_SECRET,

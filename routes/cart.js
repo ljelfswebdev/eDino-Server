@@ -6,9 +6,10 @@ const router = express.Router();
 // middleware
 import { requireSignin, canEditDeleteProduct, isAdmin  } from "../middlewares";
 // controllers
-import {addToCart} from "../controllers/cart";
+import {addToCart, fetchCart} from "../controllers/cart";
 
 
-router.post("/add-to-cart", addToCart, requireSignin);
+router.post("/add-to-cart", requireSignin, addToCart);
+router.get('/fetch-cart', requireSignin, fetchCart);
 
 module.exports = router;
